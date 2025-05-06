@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ثبت نام | طرح کتاب درسی</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(45deg, #ff0033, #9900ff, #0066ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .glass-container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 20px;
+            padding: 40px;
+            width: 90%;
+            max-width: 500px;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+        }
+
+        h1 {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 0, 51, 0.5);
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        label {
+            display: block;
+            color: #fff;
+            margin-bottom: 8px;
+            font-weight: bold;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+
+        input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.3);
+            box-shadow: 0 0 10px rgba(255, 0, 51, 0.5);
+        }
+
+        button {
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 8px;
+            background: linear-gradient(45deg, #ff0033, #9900ff);
+            color: white;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 15px rgba(255, 0, 51, 0.5);
+        }
+
+        .message {
+            color: #fff;
+            text-align: center;
+            margin-top: 20px;
+            text-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="glass-container">
+        <h1>ثبت نام در طرح کتاب درسی</h1>
+        <form id="registrationForm" action="1.php" method="post">
+            <div class="input-group">
+                <label for="firstName">نام:</label>
+                <input type="text" name="firstName" id="firstName" required placeholder="نام خود را وارد کنید">
+            </div>
+        
+            <div class="input-group">
+                <label for="lastName">نام خانوادگی:</label>
+                <input type="text" name="lastName" id="lastName" required placeholder="نام خانوادگی خود را وارد کنید">
+            </div>
+        
+            <div class="input-group">
+                <label for="schoolname">نام مدرسه:</label>
+                <input type="text" name="schoolname" id="schoolname" required placeholder="نام مدرسه را وارد کنید">
+            </div>
+        
+            <div class="input-group">
+                <label for="grade">پایه تحصیلی:</label>
+                <select name="grade" id="grade" required>
+                    <option value="" disabled selected>پایه تحصیلی را انتخاب کنید</option>
+                    <option value="1">اول</option>
+                    <option value="2">دوم</option>
+                    <option value="3">سوم</option>
+                    <option value="4">چهارم</option>
+                    <option value="5">پنجم</option>
+                    <option value="6">ششم</option>
+                    <option value="7">هفتم</option>
+                    <option value="8">هشتم</option>
+                    <option value="9">نهم</option>
+                    <option value="10">دهم</option>
+                    <option value="11">یازدهم</option>
+                    <option value="12">دوازدهم</option>
+                </select>
+            </div>
+        
+            <button type="submit">ثبت اطلاعات 🔥</button>
+        </form>
+    </div>
+    
+    <script>
+        const form = document.getElementById('registrationForm');
+    
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+    
+            const studentData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                schoolname: document.getElementById('schoolname').value,
+                grade: document.getElementById('grade').value
+            };
+    
+            localStorage.setItem('studentData', JSON.stringify(studentData));
+            window.location.href = "2.html"; // انتقال به صفحه دیگر
+        });
+    </script>
+</body>
+</html>

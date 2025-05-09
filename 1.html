@@ -101,7 +101,7 @@
 <body>  
     <div class="glass-container">
         <h1>ثبت نام در طرح کتاب درسی</h1>
-        <form id="registrationForm" action="1.php" method="post">
+        <form id="registrationForm" action="/submit" method="post">
             <div class="input-group">
                 <label for="firstName">نام:</label>
                 <input type="text" name="firstName" id="firstName" required placeholder="نام خود را وارد کنید">
@@ -139,5 +139,39 @@
             <button type="submit">ثبت اطلاعات 🔥</button>
         </form>
     </div>
+    <script>
+            document.getElementById("registrationForm").addEventListener("submit", (e) => {
+                e.preventDefault();
+                
+
+                e.target.submit();
+            });
+            const formData = {
+                name: e.target.firstName.value,
+                lastName: e.target.lastName.value
+            };
+    
+            try {
+                const response = await fetch("http://localhost:3000/submit-form", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify(formData),
+                });
+    
+                const result = await response.json();
+                
+                if (response.ok) {
+                    alert(result.message);
+                    console.log("داده ذخیره شد:", result.data);
+                } else {
+                    alert("خطا: " + (result.error || "ارسال ناموفق!"));
+                }
+            } catch (error) {
+                console.error("مشکل در ارسال:", error);
+                alert("اتصال به سرور ناموفق بود!");
+            }
+    </script>
 </body>
 </html>
